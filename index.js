@@ -23,7 +23,7 @@ var mime = require('mime');
 module.exports = function SkipperS3 (globalOpts) {
   globalOpts = globalOpts || {};
 
-  // console.log('S3 adapter was instantiated...');
+  console.log('S3 adapter was instantiated with options:', globalOpts);
 
 
   var adapter = {
@@ -44,6 +44,7 @@ module.exports = function SkipperS3 (globalOpts) {
       // Build a noop transform stream that will pump the S3 output through
       var __transform__ = new Transform();
       __transform__._transform = function (chunk, encoding, callback) {
+        console.log('chunk:', chunk);
         return callback(null, chunk);
       };
 
